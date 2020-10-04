@@ -60,6 +60,7 @@ export class Person extends Entity {
   // id: number;
 
   @property({
+    id: true,
     type: 'number',
     generated: true,
     required: false
