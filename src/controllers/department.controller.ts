@@ -123,7 +123,7 @@ export class DepartmentController {
     },
   })
   async findById(
-    @param.path.number('id') id: string,
+    @param.path.number('id') id: number,
     @param.filter(Department, {exclude: 'where'}) filter?: FilterExcludingWhere<Department>
   ): Promise<Department> {
     return this.departmentRepository.findById(id, filter);
@@ -137,7 +137,7 @@ export class DepartmentController {
     },
   })
   async updateById(
-    @param.path.number('id') id: string,
+    @param.path.number('id') id: number,
     @requestBody({
       content: {
         'application/json': {
@@ -158,7 +158,7 @@ export class DepartmentController {
     },
   })
   async replaceById(
-    @param.path.number('id') id: string,
+    @param.path.number('id') id: number,
     @requestBody() department: Department,
   ): Promise<void> {
     await this.departmentRepository.replaceById(id, department);
@@ -171,7 +171,7 @@ export class DepartmentController {
       },
     },
   })
-  async deleteById(@param.path.number('id') id: string): Promise<void> {
+  async deleteById(@param.path.number('id') id: number): Promise<void> {
     await this.departmentRepository.deleteById(id);
   }
 

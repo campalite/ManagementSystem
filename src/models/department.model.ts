@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, hasMany, model, property} from '@loopback/repository';
+import {Person} from './person.model';
 
 @model()
 export class Department extends Entity {
@@ -22,11 +23,26 @@ export class Department extends Entity {
 
   @property({
     type: 'number',
-    required: true,
+    required: false,
+    generated: true,
     id: true,
   })
-  id: string;
+  id: number;
 
+  @property({
+    type: 'number',
+  })
+  m_id: number;
+
+  @property({
+    type: 'number',
+    generated: true,
+    required: false,
+  })
+  d_id: number;
+
+  @hasMany(() => Person, {keyTo: 'd _id'})
+  personid: Person;
 
   constructor(data?: Partial<Department>) {
     super(data);

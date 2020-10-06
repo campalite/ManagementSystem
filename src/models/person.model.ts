@@ -1,5 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
-
+import {Entity, hasOne, model, property} from '@loopback/repository';
+import {Department} from './department.model';
 @model()
 
 export class Person extends Entity {
@@ -63,11 +63,24 @@ export class Person extends Entity {
     id: true,
     type: 'number',
     generated: true,
-    required: false
+    required: false,
   })
   id: number;
 
+  @property({
+    type: 'number',
+    generated: true,
+    required: false,
+  })
+  m_id: number;
 
+  @hasOne(() => Department, {keyTo: 'm_id'})
+  managerId: Department;
+
+  @property({
+    type: 'number',
+  })
+  d_id: number;
 
 
 

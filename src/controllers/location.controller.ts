@@ -123,7 +123,7 @@ export class LocationController {
     },
   })
   async findById(
-    @param.path.number('id') id: string,
+    @param.path.number('id') id: number,
     @param.filter(Location, {exclude: 'where'}) filter?: FilterExcludingWhere<Location>
   ): Promise<Location> {
     return this.locationRepository.findById(id, filter);
@@ -137,7 +137,7 @@ export class LocationController {
     },
   })
   async updateById(
-    @param.path.number('id') id: string,
+    @param.path.number('id') id: number,
     @requestBody({
       content: {
         'application/json': {
@@ -158,7 +158,7 @@ export class LocationController {
     },
   })
   async replaceById(
-    @param.path.number('id') id: string,
+    @param.path.number('id') id: number,
     @requestBody() location: Location,
   ): Promise<void> {
     await this.locationRepository.replaceById(id, location);
@@ -171,7 +171,7 @@ export class LocationController {
       },
     },
   })
-  async deleteById(@param.path.number('id') id: string): Promise<void> {
+  async deleteById(@param.path.number('id') id: number): Promise<void> {
     await this.locationRepository.deleteById(id);
   }
 }

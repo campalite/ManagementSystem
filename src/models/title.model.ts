@@ -22,10 +22,11 @@ export class Title extends Entity {
 
   @property({
     type: 'number',
-    required: true,
+    required: false,
+    generated: true,
     id: true,
   })
-  id: string;
+  id: number;
 
 
   constructor(data?: Partial<Title>) {

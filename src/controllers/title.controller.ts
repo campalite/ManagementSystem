@@ -123,7 +123,7 @@ export class TitleController {
     },
   })
   async findById(
-    @param.path.number('id') id: string,
+    @param.path.number('id') id: number,
     @param.filter(Title, {exclude: 'where'}) filter?: FilterExcludingWhere<Title>
   ): Promise<Title> {
     return this.titleRepository.findById(id, filter);
@@ -137,7 +137,7 @@ export class TitleController {
     },
   })
   async updateById(
-    @param.path.number('id') id: string,
+    @param.path.number('id') id: number,
     @requestBody({
       content: {
         'application/json': {
@@ -158,7 +158,7 @@ export class TitleController {
     },
   })
   async replaceById(
-    @param.path.number('id') id: string,
+    @param.path.number('id') id: number,
     @requestBody() title: Title,
   ): Promise<void> {
     await this.titleRepository.replaceById(id, title);
@@ -171,7 +171,7 @@ export class TitleController {
       },
     },
   })
-  async deleteById(@param.path.number('id') id: string): Promise<void> {
+  async deleteById(@param.path.number('id') id: number): Promise<void> {
     await this.titleRepository.deleteById(id);
   }
 }

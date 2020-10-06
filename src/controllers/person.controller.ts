@@ -75,7 +75,7 @@ export class PersonController {
           'application/json': {
             schema: {
               type: 'array',
-              items: getModelSchemaRef(Person, {includeRelations: true}),
+              items: getModelSchemaRef(Person, {includeRelations: false}),
             },
           },
         },
@@ -174,4 +174,15 @@ export class PersonController {
   async deleteById(@param.path.number('id') id: string): Promise<void> {
     await this.personRepository.deleteById(id);
   }
+
+  @get('/persons/{m_id}')
+  async findBymId(
+    @param.path.number('m_id') m_id: string,
+    @param.filter(Person, {exclude: 'where'}) filter?: FilterExcludingWhere<Person>
+  ): Promise<Person> {
+    return this.personRepository.findBymId(m_id, filter);
+  }
+
+
+
 }
